@@ -1,0 +1,15 @@
+#calculator {
+  display: grid;
+  border: 1px solid black;
+  height: 500px;
+  width: 500px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  font-size: 50px;
+  text-align: center;
+}
+
+#zero, #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #add, #subtract, #multiply, #divide, #equal, #remove {
+  border: 1px solid black;
+  grid-template-columns: 1fr;
+}

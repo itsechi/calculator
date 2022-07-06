@@ -4,12 +4,27 @@
   height: 500px;
   width: 500px;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: 50px repeat(5, 1fr);
   font-size: 50px;
   text-align: center;
 }
 
-#zero, #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #add, #subtract, #multiply, #divide, #equal, #remove {
+.numbers, .operators, .equal, .remove {
   border: 1px solid black;
   grid-template-columns: 1fr;
+}
+
+ .display {
+  grid-column: 1 / 5;
+  border: 1px solid black;
+  border-top: none;
+}
+
+.displaySmall {
+  grid-column: 1 / 5;
+  text-align: right;
+  font-size: 2rem;
+  padding-right: 5px;
+  border: 1px solid black;
+  border-bottom: none;
 }

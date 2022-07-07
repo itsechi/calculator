@@ -55,14 +55,13 @@ window.addEventListener('keydown', function (e) {
 // store user selected numbers
 function assignNumber(e) {
   if (operator !== '') {
-    if (b < 99999999999999 || b == '.') {
-      // input limit || makes it possible to enter . and then numbers
+    if (b < 99999999999 || b == '.') {
       b += e.target.textContent;
       displayDiv.textContent = b;
       if (b.includes('.')) pointBtn.removeEventListener('click', assignNumber);
     }
   } else {
-    if (a < 99999999999999 || a == '.') {
+    if (a < 99999999999 || a == '.') {
       a += e.target.textContent;
       displayDiv.textContent = a;
       if (a.includes('.')) pointBtn.removeEventListener('click', assignNumber);

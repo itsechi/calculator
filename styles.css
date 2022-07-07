@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -5,44 +7,92 @@
 }
 
 #calculator {
+  font-family: 'Roboto', sans-serif;
   display: grid;
-  border: 1px solid black;
-  height: 500px;
-  width: 500px;
+  height: 600px;
+  width: 350px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 0.5fr repeat(6, 1fr);
-  font-size: 50px;
-  text-align: center;
-  margin: 10px auto;
+  font-size: 20px;
+  text-align: right;
+  margin: 5% auto;
+  background: linear-gradient(90deg, hsla(259, 84%, 78%, 1) 0%, hsla(206, 67%, 75%, 1) 100%);
+  box-shadow: 5px 5px 20px #d0cbca;
+  border-radius: 10px;
+  color: white;
 }
 
-button {
-  border: 1px solid black;
-  font-size: inherit;
-  font-family: inherit;
-}
-
- .display {
+.display {
+  font-size: 45px;
   grid-column: 1 / 5;
-  border: 1px solid black;
   border-top: none;
-  word-wrap: break-word;
-
+  word-break: break-all;
+  padding-right: 10px;
+  padding-left: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .displaySmall {
   grid-column: 1 / 5;
   text-align: right;
-  font-size: 2rem;
-  padding-right: 5px;
-  border: 1px solid black;
+  font-size: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
   border-bottom: none;
+  word-wrap: break-word;
+  margin-top: 5px;
 }
 
-.clear {
-  grid-column: 1 / 3;
-}
-
+.clear,
 .allClear {
+  background-color: #f1f3ff;
+  color: #3D488E;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.clear:hover,
+.allClear:hover {
+  background-color: #dce1ff;
+}
+
+.topContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 25%;
+  grid-column: 1 / 5;
+}
+
+.operators {
+  background-color: #e0e4fb;
+  font-size: 25px;
+  color: #3D488E;
+  font-weight: 500;
+}
+
+.operators:hover {
+  background-color: #c3cbf7;
+}
+
+.equal {
   grid-column: 3 / 5;
+  background: linear-gradient(90deg, hsla(259, 84%, 78%, 1) 0%, hsla(206, 67%, 75%, 1) 100%);
+  color: white;
+  font-size: 50px;
+}
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  background-color: white;
+  color: #433a47;
+}
+
+button:hover {
+  background-color: #dde2fe;
 }

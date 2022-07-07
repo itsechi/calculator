@@ -11,6 +11,7 @@ let b = '';
 let operator = '';
 let result = '';
 let isEqual = false;
+let point = true;
 
 numberBtns.forEach(button => button.addEventListener('click', assignNumber));
 
@@ -29,25 +30,49 @@ clearBtn.addEventListener('click', clear);
 
 pointBtn.addEventListener('click', assignNumber);
 
+// keyboard support
+window.addEventListener('keydown', function (e) {
+  if (e.key == 0) document.querySelector('#zero').click();
+  if (e.key == 1) document.querySelector('#one').click();
+  if (e.key == 2) document.querySelector('#two').click();
+  if (e.key == 3) document.querySelector('#three').click();
+  if (e.key == 4) document.querySelector('#four').click();
+  if (e.key == 5) document.querySelector('#five').click();
+  if (e.key == 6) document.querySelector('#six').click();
+  if (e.key == 7) document.querySelector('#seven').click();
+  if (e.key == 8) document.querySelector('#eight').click();
+  if (e.key == 9) document.querySelector('#nine').click();
+  if (e.key == '+') document.querySelector('#add').click();
+  if (e.key == '-') document.querySelector('#subtract').click();
+  if (e.key == '*') document.querySelector('#multiply').click();
+  if (e.key == '/') document.querySelector('#divide').click();
+  if (e.key == 'Enter') document.querySelector('#equal').click();
+  if (e.key == ',') document.querySelector('#point').click();
+  if (e.key == 'Backspace') document.querySelector('.clear').click();
+  if (e.key == 'Delete') document.querySelector('.allClear').click();
+});
+
 // store user selected numbers
 function assignNumber(e) {
   if (operator !== '') {
-    // if (b < 999999999999999999n)
-    pointBtn.addEventListener('click', assignNumber);
-    if (b.includes('.')) pointBtn.removeEventListener('click', assignNumber);
-    b += e.target.textContent;
-    displayDiv.textContent = b;
+    if (b < 99999999999999 || b == '.') {
+      // input limit || makes it possible to enter . and then numbers
+      b += e.target.textContent;
+      displayDiv.textContent = b;
+      if (b.includes('.')) pointBtn.removeEventListener('click', assignNumber);
+    }
   } else {
-    // if (a < 999999999999999999n)
-    if (a.includes('.')) pointBtn.removeEventListener('click', assignNumber);
-    a += e.target.textContent;
-    displayDiv.textContent = a;
+    if (a < 99999999999999 || a == '.') {
+      a += e.target.textContent;
+      displayDiv.textContent = a;
+      if (a.includes('.')) pointBtn.removeEventListener('click', assignNumber);
+    }
   }
 }
 
-// store user selected operators
 function assignOperator(e) {
   operate();
+  pointBtn.addEventListener('click', assignNumber);
   if (e.target.textContent === '+') {
     operator = '+';
     b = '';
@@ -76,16 +101,25 @@ function assignOperator(e) {
 }
 
 function clear() {
+  a = a.toString();
+  b = b.toString();
+
   if (operator !== '' && result === '') {
-    b = b.slice(0, -1);
-    displayDiv.textContent = b;
+    if (b !== '') {
+      b = b.slice(0, -1);
+      displayDiv.textContent = b;
+    } else {
+      a = a.slice(0, -1);
+      displayDiv.textContent = a;
+    }
+    if (!b.includes('.')) pointBtn.addEventListener('click', assignNumber);
   } else if (operator == '') {
     a = a.slice(0, -1);
     displayDiv.textContent = a;
-  } else return;
+    if (!a.includes('.')) pointBtn.addEventListener('click', assignNumber);
+  }
 }
 
-// clear calc
 function allClear() {
   a = '';
   b = '';
@@ -103,7 +137,6 @@ function divideZero() {
   return;
 }
 
-// math functions
 function add(a, b) {
   return (result = a + b);
 }
@@ -160,12 +193,15 @@ function operate() {
   }
 
   if (isEqual) {
-    if (b === 0) {
+    if (b === 0 && operator === '/') {
       divideZero();
     } else {
       displayDiv.textContent = result;
       displayDivSmall.textContent = `${a} ${operator} ${b} =`;
       isEqual = false;
+      a = result;
+      b = '';
+      result = '';
     }
   }
 }

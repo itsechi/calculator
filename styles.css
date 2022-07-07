@@ -1,23 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #calculator {
   display: grid;
   border: 1px solid black;
   height: 500px;
   width: 500px;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 50px repeat(5, 1fr);
+  grid-template-rows: 0.5fr repeat(6, 1fr);
   font-size: 50px;
   text-align: center;
+  margin: 10px auto;
 }
 
-.numbers, .operators, .equal, .remove {
+button {
   border: 1px solid black;
-  grid-template-columns: 1fr;
+  font-size: inherit;
+  font-family: inherit;
 }
 
  .display {
   grid-column: 1 / 5;
   border: 1px solid black;
   border-top: none;
+  word-wrap: break-word;
+
 }
 
 .displaySmall {
@@ -27,4 +37,12 @@
   padding-right: 5px;
   border: 1px solid black;
   border-bottom: none;
+}
+
+.clear {
+  grid-column: 1 / 3;
+}
+
+.allClear {
+  grid-column: 3 / 5;
 }
